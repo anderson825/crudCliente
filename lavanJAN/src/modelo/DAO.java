@@ -38,5 +38,16 @@ public class DAO {
     }
     
     
+    public Cliente search(int cedula){
+        Cliente salida = null;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("lavanJANPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        salida = em.find(Cliente.class,cedula);
+        em.getTransaction().commit();
+        return salida;
+    }
+    
+    
     
 }

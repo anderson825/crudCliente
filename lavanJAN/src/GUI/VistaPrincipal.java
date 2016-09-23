@@ -88,6 +88,11 @@ private DAO dao;
         });
 
         jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Modificar");
 
@@ -205,11 +210,31 @@ private DAO dao;
         c.setEmail(ema);
         if(dao.insert(c)){
             JOptionPane.showMessageDialog(null,"REGISTRO CORRECTO");
+            clear();
         }else{
             JOptionPane.showMessageDialog(null,"ERROR AL REGISTRAR");
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+    public void clear(){
+        txtCedula.setText(null);
+        txtNombre.setText(null);
+        txtApellido.setText(null);
+        txtDireccion.setText(null);
+        txtEmail.setText(null);
+    }
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       int cedula = Integer.parseInt(txtCedula.getText());
+       Cliente c = dao.search(cedula);
+       if(c!=null){
+           txtNombre.setText(c.getNombre());
+           txtApellido.setText(c.getApellido());
+           txtDireccion.setText(c.getDireccion());
+           txtEmail.setText(c.getEmail());
+           
+       }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
